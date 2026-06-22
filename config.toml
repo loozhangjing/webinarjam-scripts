@@ -1,2 +1,3 @@
 [api_endpoints]
-registrants = "https://api.webinarjam.com/webinarjam/registrants"
+get_all_webinars = "https://api.webinarjam.com/webinarjam/webinars"
+get_registrants_for_one_webinar = "https://api.webinarjam.com/webinarjam/registrants"
