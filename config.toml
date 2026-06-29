@@ -3,17 +3,22 @@ output_folder_path = "output/"
 [plots]
 output_folder = "plots"
 
-[get_all_webinars]
+[fetch_all_webinars]
 api_endpoint = "https://api.webinarjam.com/webinarjam/webinars"
 output_filename = "webinars.json"
 
-[get_registrants_for_selected_webinars]
+[fetch_registrants_for_selected_webinars]
 include_year = 2026
+
 # case-insensitive
 exclude_webinars_with_names_containing = [
 	"paid",
 	"付费"
 ]
+
+# don't change this unless you know what you're doing (for reference: https://docs.python.org/3/library/datetime.html#format-codes)
+strptime_format = "%A, %d %b %Y, %I:%M %p"
+
 api_endpoint = "https://api.webinarjam.com/webinarjam/registrants"
 output_filename = "registrants.json"
 

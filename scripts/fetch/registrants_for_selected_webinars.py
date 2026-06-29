@@ -18,7 +18,7 @@ with open("config.toml", "rb") as file:
 
 OUTPUT_DIRECTORY_PATH = Path(config["output_folder_path"])
 
-WEBINARS_LIST_FILE_PATH = OUTPUT_DIRECTORY_PATH / config["get_all_webinars"]["output_filename"]
+WEBINARS_LIST_FILE_PATH = OUTPUT_DIRECTORY_PATH / config["fetch_all_webinars"]["output_filename"]
 
 with open(WEBINARS_LIST_FILE_PATH) as file:
     webinars = json.load(file)["webinars"]
@@ -28,10 +28,12 @@ webinar_count = len(webinars)
 print(f"Loaded information for all {webinar_count} webinars from {WEBINARS_LIST_FILE_PATH}.")
 print()
 
-ENDPOINT = config["get_registrants_for_selected_webinars"]["api_endpoint"]
+fetch_config = config["fetch_registrants_for_selected_webinars"]
 
-INCLUDE_YEAR = config["get_registrants_for_selected_webinars"]["include_year"]
-EXCLUDED_KEYWORDS = config["get_registrants_for_selected_webinars"]["exclude_webinars_with_names_containing"]
+ENDPOINT = fetch_config["api_endpoint"]
+
+INCLUDE_YEAR = fetch_config["include_year"]
+EXCLUDED_KEYWORDS = fetch_config["exclude_webinars_with_names_containing"]
 
 # (see https://docs.python.org/3/library/datetime.html#format-codes)
 # the time string in the registrant data looks like this:
@@ -100,7 +102,7 @@ for webinar in webinars:
     registrants[webinar_id] = registrants_of_current_webinar
     print()
 
-output_filename = config["get_registrants_for_selected_webinars"]["output_filename"]
+output_filename = config["fetch_registrants_for_selected_webinars"]["output_filename"]
 output_file_path = OUTPUT_DIRECTORY_PATH / output_filename
 
 with open(output_file_path, "w") as file:
