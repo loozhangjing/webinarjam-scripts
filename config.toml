@@ -58,3 +58,9 @@ json_keys = [
 	"total_signups",
 	# + country and province, but they are dealt with inside the .py file because their values are objects
 ]
+
+[convert_webinars_by_registrant_to_csv]
+output_subfolder = "webinars_by_registrant_csv"
+
+[plots]
+output_subfolder = "plots"
