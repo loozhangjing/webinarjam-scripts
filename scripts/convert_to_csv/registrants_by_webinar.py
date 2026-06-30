@@ -6,14 +6,13 @@ import tomllib
 with open("config.toml", "rb") as file:
     config = tomllib.load(file)
 
-output_directory_path = Path(config["output_folder_path"])
+OUTPUT_DIRECTORY_PATH = Path(config["output_folder"])
 
-registrants_filename = config["get_registrants_for_selected_webinars"]["output_filename"]
-registrants_file_path = output_directory_path / registrants_filename
+REGISTRANTS_BY_WEBINAR_FILE_PATH = OUTPUT_DIRECTORY_PATH / config["fetch_registrants_by_webinar"]["output_filename"]
 
-csv_output_directory_path = output_directory_path / Path(config["convert_registrant_data_to_csv"]["output_folder"])
+csv_output_directory_path = OUTPUT_DIRECTORY_PATH / Path(config["convert_registrant_data_to_csv"]["output_subfolder"])
 
-with open(registrants_file_path) as file:
+with open(REGISTRANTS_BY_WEBINAR_FILE_PATH) as file:
     registrants = json.load(file)
 
 csv_first_line = config["convert_registrant_data_to_csv"]["first_line"]

@@ -16,19 +16,19 @@ API_KEY = os.environ["WEBINARJAM_API_KEY"]
 with open("config.toml", "rb") as file:
     config = tomllib.load(file)
 
-OUTPUT_DIRECTORY_PATH = Path(config["output_folder_path"])
+OUTPUT_DIRECTORY_PATH = Path(config["output_folder"])
 
-WEBINARS_LIST_FILE_PATH = OUTPUT_DIRECTORY_PATH / config["fetch_all_webinars"]["output_filename"]
+WEBINARS_LIST_FILE_PATH = OUTPUT_DIRECTORY_PATH / config["fetch_webinar_list"]["output_filename"]
 
 with open(WEBINARS_LIST_FILE_PATH) as file:
-    webinars = json.load(file)["webinars"]
+    webinars = json.load(file)
 
 webinar_count = len(webinars)
 
 print(f"Loaded information for all {webinar_count} webinars from {WEBINARS_LIST_FILE_PATH}.")
 print()
 
-fetch_config = config["fetch_registrants_for_selected_webinars"]
+fetch_config = config["fetch_registrants_by_webinar"]
 
 ENDPOINT = fetch_config["api_endpoint"]
 
@@ -102,7 +102,7 @@ for webinar in webinars:
     registrants[webinar_id] = registrants_of_current_webinar
     print()
 
-output_filename = config["fetch_registrants_for_selected_webinars"]["output_filename"]
+output_filename = fetch_config["output_filename"]
 output_file_path = OUTPUT_DIRECTORY_PATH / output_filename
 
 with open(output_file_path, "w") as file:
