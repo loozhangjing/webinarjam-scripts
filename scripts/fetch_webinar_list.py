@@ -1,5 +1,4 @@
 import os
-import pathlib
 import json
 import logging
 
@@ -28,11 +27,9 @@ logging.info("response converted to JSON")
 webinars = response_json["webinars"]
 logging.info(f"there are {len(webinars)} webinars")
 
-OUTPUT_DIRECTORY_PATH = pathlib.Path(GlobalConfig.OUTPUT_DIRECTORY)
-
 # create the output directory if it doesn't yet exist
-OUTPUT_DIRECTORY_PATH.mkdir(parents=True, exist_ok=True)
-OUTPUT_FILE_PATH = OUTPUT_DIRECTORY_PATH / WebinarListConfig.OUTPUT_FILENAME
+GlobalConfig.OUTPUT_DIRECTORY_PATH.mkdir(parents=True, exist_ok=True)
+OUTPUT_FILE_PATH = GlobalConfig.OUTPUT_DIRECTORY_PATH / WebinarListConfig.OUTPUT_FILENAME
 
 confirm_if_overwriting_file(OUTPUT_FILE_PATH)
 

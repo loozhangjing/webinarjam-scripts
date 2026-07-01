@@ -1,3 +1,4 @@
+import pathlib
+
 class GlobalConfig:
-    # must end with a '/'
-    OUTPUT_DIRECTORY = "data/"
+    OUTPUT_DIRECTORY_PATH = pathlib.Path("data/")
